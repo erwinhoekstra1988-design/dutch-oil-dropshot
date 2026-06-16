@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dutch Oil · Dropshot — The Shot That Starts The Night</title>
+<meta name="description" content="Dutch Oil Dropshot N°01 — een stroperige shot van honing en zeezout. Built for the night." />
+<script>
+(function() {
+  try { if (localStorage.getItem('dutch-oil-age-ok') === '1') return; } catch (e) {}
+  try { sessionStorage.setItem('dutch-oil-age-return', location.pathname.split('/').pop() || 'index.html'); } catch (e) {}
+  location.replace('age-gate.html');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="nav.js?v=2" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav-bar">
+  <a href="index.html" class="logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-nav" class="nav-links" aria-label="Hoofdnavigatie">
+    <a href="index.html" class="menu-item active">Home</a>
+    <a href="product.html" class="menu-item">The Product</a>
+    <a href="story.html" class="menu-item">The Story</a>
+    <a href="stockists.html" class="menu-item">Selling Points</a>
+    <a href="contact.html" class="menu-item">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <video class="hero-bg" autoplay loop muted playsinline poster="assets/penguin-iceberg.png?v=2" aria-hidden="true">
+    <source src="assets/Penguin_grabs_bottle_on_iceberg.mp4?v=2" type="video/mp4" />
+  </video>
+  <div class="hero-grad"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
+    <h1 class="hero-title">The Shot<br />That <span class="accent-electric">Starts</span><br />The Night</h1>
+    <div class="hero-actions">
+      <a href="stockists.html" class="btn">WAAR VERKRIJGBAAR</a>
+    </div>
+  </div>
+  <div class="hero-scroll">↓ SCROLL — REFUEL</div>
+</section>
+
+<div class="hazard-tape" role="presentation"></div>
+
+<!-- 02 THE PRODUCT -->
+<section id="product" class="product">
+  <div class="sec-header">
+    <span class="sec-num">02 //</span>
+    <span class="sec-title">THE PRODUCT</span>
+  </div>
+  <div class="product-grid">
+    <div class="product-img">
+      <img src="assets/bottle-bar.png?v=2" alt="Dutch Oil Dropshot fles op een bar" />
+    </div>
+    <div class="product-copy">
+      <div class="product-eyebrow">FLAVOUR PROFILE</div>
+      <h2 class="product-headline">HONEY <span class="accent-electric">×</span> SALT.</h2>
+      <p class="product-body">
+        Een stroperige shot met de zoete warmte van honing en een onverwachte zoute klap.
+        De Dropshot is geen doorsnee shot. Hij is gemaakt voor mensen die niet voor minder gaan.
+      </p>
+      <dl class="spec-grid">
+        <div class="spec"><dt>ABV</dt><dd>21%</dd></div>
+        <div class="spec"><dt>VOL</dt><dd>70 cl</dd></div>
+        <div class="spec"><dt>SERVE</dt><dd>Cold</dd></div>
+        <div class="spec"><dt>STORE</dt><dd>Freezer</dd></div>
+      </dl>
+      <a href="product.html" class="btn btn-ghost product-cta">MEER OVER DUTCH OIL DROPSHOT</a>
+    </div>
+  </div>
+</section>
+
+<!-- 02.5 FIELD REPORT -->
+<section class="field-report">
+  <div class="label">⚠ FIELD REPORT</div>
+  <blockquote class="field-quote">“Niet zomaar een shotje.<br />Een statement.”</blockquote>
+  <div class="field-credit">— MIXOLOGY NL · APR 2026</div>
+</section>
+
+<!-- 3 modular cards -->
+<section class="cards">
+  <a href="product.html" class="card">
+    <div class="card-img"><img src="assets/bottle-blue-bar.png?v=2" alt="Dutch Oil Dropshot product" /></div>
+    <div class="card-body">
+      <div class="card-num mono">02 //</div>
+      <div class="card-title">The Product</div>
+      <div class="card-sub">Honing × Zout</div>
+      <div class="card-cta">READ →</div>
+    </div>
+  </a>
+  <a href="story.html" class="card">
+    <div class="card-img"><img src="assets/man-bottle.png?v=2" alt="Dutch Oil verhaal" /></div>
+    <div class="card-body">
+      <div class="card-num mono">03 //</div>
+      <div class="card-title">The Story</div>
+      <div class="card-sub">Built in Groningen</div>
+      <div class="card-cta">READ →</div>
+    </div>
+  </a>
+  <a href="stockists.html" class="card">
+    <div class="card-img"><img src="assets/bottle-wood-bar.png?v=2" alt="Verkooppunten" /></div>
+    <div class="card-body">
+      <div class="card-num mono">04 //</div>
+      <div class="card-title">Selling Points</div>
+      <div class="card-sub">Find a stockist</div>
+      <div class="card-cta">READ →</div>
+    </div>
+  </a>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+  </div>
+</div>
+
+<div class="hazard-tape" role="presentation"></div>
+
+<!-- FOOTER -->
+<footer id="contact" class="site-footer">
+  <div>
+    <div class="logo foot-logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</div>
+    <address class="foot-addr">
+      THE BOOZE COMPANY<br />
+      DUTCH OIL DROPSHOT<br />
+      HIDDEMAHEERD 168 — 9737JK GRONINGEN<br />
+      <a href="mailto:info@dutchoil.nl">INFO@DUTCHOIL.NL</a>
+    </address>
+    <div class="label foot-warn">⚠ DRINK RESPONSIBLY · 18+</div>
+  </div>
+  <div>
+    <div class="label">SITE</div>
+    <ul class="foot-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="product.html">The Product</a></li>
+      <li><a href="story.html">The Story</a></li>
+      <li><a href="stockists.html">Selling Points</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="label">FOLLOW</div>
+    <ul class="foot-list">
+      <li><a href="#">Instagram ↗</a></li>
+      <li><a href="#">TikTok ↗</a></li>
+      <li><a href="#">Spotify ↗</a></li>
+    </ul>
+    <div class="foot-copy">© 2026 — DROPSHOT</div>
+  </div>
+</footer>
+
+</body>
+</html>

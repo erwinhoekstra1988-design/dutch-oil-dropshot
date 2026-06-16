@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dutch Oil · Dropshot — The Story</title>
+<meta name="description" content="Built in Groningen. The booze company behind Dutch Oil Dropshot." />
+<script>
+(function() {
+  try { if (localStorage.getItem('dutch-oil-age-ok') === '1') return; } catch (e) {}
+  try { sessionStorage.setItem('dutch-oil-age-return', location.pathname.split('/').pop() || 'index.html'); } catch (e) {}
+  location.replace('age-gate.html');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="nav.js?v=2" defer></script>
+</head>
+<body>
+
+<header class="nav-bar">
+  <a href="index.html" class="logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-nav" class="nav-links" aria-label="Hoofdnavigatie">
+    <a href="index.html" class="menu-item">Home</a>
+    <a href="product.html" class="menu-item">The Product</a>
+    <a href="story.html" class="menu-item active">The Story</a>
+    <a href="stockists.html" class="menu-item">Selling Points</a>
+    <a href="contact.html" class="menu-item">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO with Groningen aerial -->
+<section class="hero" style="min-height: 610px;">
+  <img class="hero-bg" src="assets/groningen.png?v=2" alt="" aria-hidden="true" />
+  <div class="hero-grad"></div>
+  <div class="hero-inner" style="min-height: 610px;">
+    <div class="hero-eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
+    <h1 class="hero-title"><span class="accent-electric">From Groningen</span><br />To Every Bar.</h1>
+    <p class="hero-body">
+      Soms ontstaat een mere niet in een vergaderzaal. Soms ontstaat het aan de bar.
+      <br /><br />
+      Dutch Oil begint in Groningen, waar een kruidschat voor het Dropshot beter past.
+      Meer smaak. Meer karakter. Minder standaard.
+    </p>
+  </div>
+</section>
+
+<div class="hazard-tape" role="presentation"></div>
+
+<!-- 02 The Story — bottle left, copy right ("THE BOOZE COMPANY") -->
+<section class="split">
+  <div class="sec-header">
+    <span class="sec-num">02 //</span>
+    <span class="sec-title">THE STORY</span>
+  </div>
+  <div class="split-grid image-left">
+    <div class="split-img">
+      <img src="assets/bottle-blue-bar.png?v=2" alt="Dutch Oil bottle in blue-lit bar" />
+    </div>
+    <div class="split-copy">
+      <div class="product-eyebrow">HISTORY</div>
+      <h2 class="split-headline">The Booze<br /><span class="accent-electric">Company.</span></h2>
+      <p class="split-body">
+        Opgericht door Niell en Mick, twee ondernemers met een passie voor smaak, horeca en premium shots.
+        Vanaf dag één hebben we ons doel helder gemaakt: de pure shot heeft geprofileerd.
+      </p>
+      <div style="margin-top: 16px;">
+        <p class="split-list-intro">Dutch Oil staat voor:</p>
+        <ul style="list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 8px;">
+          <li style="font-size: 16px; color: var(--white);">› Kwaliteit boven massa</li>
+          <li style="font-size: 16px; color: var(--white);">› Smaak boven marketing</li>
+          <li style="font-size: 16px; color: var(--white);">› Karakter boven compromis</li>
+          <li style="font-size: 16px; color: var(--white);">› Samen genieten boven alleen drinken</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+    <span>DARE · DRINK · DROP · REPEAT ·&nbsp;</span>
+  </div>
+</div>
+
+<!-- 04 IN THE WILD -->
+<section class="wild">
+  <div class="sec-header">
+    <span class="sec-num">04 //</span>
+    <span class="sec-title">IN THE WILD</span>
+    <span class="sec-meta">#DUTCHOIL · TAG @DUTCHOIL</span>
+  </div>
+  <div class="wild-grid">
+    <div><img src="assets/shots-tray-club.png?v=2" alt="Shots in a club" /></div>
+    <div><img src="assets/bottle-mini-iceberg.png?v=2" alt="Bottle on iceberg" /></div>
+    <div><img src="assets/drum.jpeg?v=2" alt="Drum with shots" /></div>
+    <div><img src="assets/bottle-wood-bar.png?v=2" alt="Bottle on bar" /></div>
+  </div>
+</section>
+
+<div class="hazard-tape" role="presentation"></div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div>
+    <div class="logo foot-logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</div>
+    <address class="foot-addr">
+      THE BOOZE COMPANY<br />
+      DUTCH OIL DROPSHOT<br />
+      HIDDEMAHEERD 168 — 9737JK GRONINGEN<br />
+      <a href="mailto:info@dutchoil.nl">INFO@DUTCHOIL.NL</a>
+    </address>
+    <div class="label foot-warn">⚠ DRINK RESPONSIBLY · 18+</div>
+  </div>
+  <div>
+    <div class="label">SITE</div>
+    <ul class="foot-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="product.html">The Product</a></li>
+      <li><a href="story.html">The Story</a></li>
+      <li><a href="stockists.html">Selling Points</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="label">FOLLOW</div>
+    <ul class="foot-list">
+      <li><a href="#">Instagram ↗</a></li>
+      <li><a href="#">TikTok ↗</a></li>
+      <li><a href="#">Spotify ↗</a></li>
+    </ul>
+    <div class="foot-copy">© 2026 — DROPSHOT</div>
+  </div>
+</footer>
+
+</body>
+</html>

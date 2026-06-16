@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dutch Oil · Dropshot — Age Verification</title>
+<meta name="description" content="To visit Dutch Oil Dropshot you must be of legal drinking age in your country of residence." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=2" />
+</head>
+<body class="age-body">
+
+<section class="age-gate">
+  <video class="age-bg" autoplay loop muted playsinline poster="assets/penguin-iceberg.png?v=2" aria-hidden="true">
+    <source src="assets/honey-spill.mp4?v=2" type="video/mp4" />
+  </video>
+  <div class="age-overlay"></div>
+
+  <div class="age-content">
+    <div class="logo age-logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</div>
+
+    <div class="label label-electric age-eyebrow">⚠ AGE VERIFICATION</div>
+
+    <h1 class="age-title">Are you of legal<br />drinking age in your<br />country of residence?</h1>
+
+    <div class="age-actions">
+      <button class="btn" type="button" id="age-yes">YES, I AM</button>
+      <a class="btn btn-ghost" href="https://www.drinkwijzer.info" rel="noopener" id="age-no">NO</a>
+    </div>
+
+    <p class="age-disclaimer">
+      To visit Dutch Oil's website you must be of legal drinking age in your country of residence.
+      More information about moderate &amp; responsible drinking can be found at
+      <a href="https://www.drinkwijzer.info" rel="noopener">drinkwijzer.info</a> or
+      <a href="https://www.drinkaware.co.uk" rel="noopener">drinkaware.co.uk</a>.
+    </p>
+  </div>
+
+  <div class="hazard-tape" role="presentation"></div>
+</section>
+
+<script>
+  // YES → remember the answer, send them to the homepage (or the page they tried to visit).
+  document.getElementById('age-yes').addEventListener('click', () => {
+    try { localStorage.setItem('dutch-oil-age-ok', '1'); } catch (e) {}
+    let target = 'index.html';
+    try {
+      const t = sessionStorage.getItem('dutch-oil-age-return');
+      if (t) { target = t; sessionStorage.removeItem('dutch-oil-age-return'); }
+    } catch (e) {}
+    location.replace(target);
+  });
+</script>
+
+</body>
+</html>

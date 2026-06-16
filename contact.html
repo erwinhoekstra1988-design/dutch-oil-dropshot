@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dutch Oil · Dropshot — Contact</title>
+<meta name="description" content="Ready to bring Dutch Oil to your bar? Let's talk." />
+<script>
+(function() {
+  try { if (localStorage.getItem('dutch-oil-age-ok') === '1') return; } catch (e) {}
+  try { sessionStorage.setItem('dutch-oil-age-return', location.pathname.split('/').pop() || 'index.html'); } catch (e) {}
+  location.replace('age-gate.html');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=2" />
+<script src="nav.js?v=2" defer></script>
+</head>
+<body>
+
+<header class="nav-bar">
+  <a href="index.html" class="logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</a>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-nav" class="nav-links" aria-label="Hoofdnavigatie">
+    <a href="index.html" class="menu-item">Home</a>
+    <a href="product.html" class="menu-item">The Product</a>
+    <a href="story.html" class="menu-item">The Story</a>
+    <a href="stockists.html" class="menu-item">Selling Points</a>
+    <a href="contact.html" class="menu-item active">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO — penguin scene -->
+<section class="hero">
+  <img class="hero-bg" src="assets/penguin-iceberg.png?v=2" alt="" aria-hidden="true" />
+  <div class="hero-grad"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
+    <h1 class="hero-title">Let's <span class="accent-electric">Talk!</span></h1>
+  </div>
+</section>
+
+<!-- 05 / CONTACT — bottle left, copy right -->
+<section class="split">
+  <div class="sec-header">
+    <span class="sec-num">05 //</span>
+    <span class="sec-title">CONTACT</span>
+  </div>
+  <div class="split-grid image-left">
+    <div class="split-img">
+      <img src="assets/bottle-blue-bar.png?v=2" alt="Dutch Oil bottle" />
+    </div>
+    <div class="contact-card">
+      <h2 class="contact-headline">Ready To Bring<br />Dutch Oil To<br />Your Bar?</h2>
+      <p class="contact-body">
+        Wil je Dutch Oil verkopen, schenken of meer weten over onze mogelijkheden?
+        We horen graag van je.
+      </p>
+      <p class="contact-body">
+        Of je nu horeca-ondernemer, groothandel of liefhebber bent: neem contact met ons op
+        en ontdek wat Dutch Oil voor jou kan betekenen.
+      </p>
+      <div class="split-actions">
+        <a href="mailto:info@dutchoil.nl" class="btn btn-ghost">GET IN TOUCH</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard-tape" role="presentation"></div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div>
+    <div class="logo foot-logo">DUTCH OIL <span class="accent">·</span> DROPSHOT</div>
+    <address class="foot-addr">
+      THE BOOZE COMPANY<br />
+      DUTCH OIL DROPSHOT<br />
+      HIDDEMAHEERD 168 — 9737JK GRONINGEN<br />
+      <a href="mailto:info@dutchoil.nl">INFO@DUTCHOIL.NL</a>
+    </address>
+    <div class="label foot-warn">⚠ DRINK RESPONSIBLY · 18+</div>
+  </div>
+  <div>
+    <div class="label">SITE</div>
+    <ul class="foot-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="product.html">The Product</a></li>
+      <li><a href="story.html">The Story</a></li>
+      <li><a href="stockists.html">Selling Points</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="label">FOLLOW</div>
+    <ul class="foot-list">
+      <li><a href="#">Instagram ↗</a></li>
+      <li><a href="#">TikTok ↗</a></li>
+      <li><a href="#">Spotify ↗</a></li>
+    </ul>
+    <div class="foot-copy">© 2026 — DROPSHOT</div>
+  </div>
+</footer>
+
+</body>
+</html>
