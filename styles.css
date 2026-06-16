@@ -181,23 +181,34 @@ a { color: inherit; text-decoration: none; }
   top: 0;
   z-index: 50;
 }
+/* Logo is now an SVG image. On hover we swap to the black-letters variant
+   via a background-image behind the <img>. visibility:hidden on the <img>
+   reveals the background, no HTML changes needed for the swap. */
 .logo {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--white);
-  transition: color 220ms ease;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+  background-image: url('assets/dutch-oil-logo-hover.svg?v=2');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
-.logo .accent {
-  color: var(--electric);
-  transition: color 220ms ease;
+.logo-img {
+  display: block;
+  height: 80px;            /* nav size — SVG keeps aspect ratio (~187px wide) */
+  width: auto;
 }
-a.logo:hover,
-a.logo:focus-visible { color: var(--electric); }
-a.logo:hover .accent,
-a.logo:focus-visible .accent { color: var(--white); }
+.foot-logo .logo-img {
+  height: 64px;            /* footer size — substantial brand presence */
+}
+@media (max-width: 600px) {
+  .logo-img         { height: 56px; }
+  .foot-logo .logo-img { height: 48px; }
+}
+a.logo:hover .logo-img,
+a.logo:focus-visible .logo-img {
+  visibility: hidden;      /* reveals the black-letters background underneath */
+}
 .nav-links {
   display: flex;
   gap: 32px;
