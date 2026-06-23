@@ -10,7 +10,7 @@ A reference for anyone (or any AI) picking the project up: what's here, why each
 
 ## 1. What this is
 
-A static brand site for **Dutch Oil Dropshot** — a Groningen-based herbal shot drink (21 % ABV, honey × salt, "Built for the night"). Five marketing pages plus an age verification gate. The aesthetic is **industrial / dark / electric-blue** — black backgrounds, asphalt-grey alternating sections, electric-blue accent, hazard-tape strips between sections, oversized Oswald display type, JetBrains Mono labels.
+A static brand site for **Dutch Oil Dropshot** — a Groningen-based herbal shot drink (23 % ABV, honey × salt, "Built for the night"). Five marketing pages plus an age verification gate. The aesthetic is **industrial / dark / electric-blue** — black backgrounds, asphalt-grey alternating sections, electric-blue accent, hazard-tape strips between sections, oversized Oswald display type, JetBrains Mono labels.
 
 ### Tech stack (deliberately minimal)
 
@@ -114,7 +114,7 @@ Recurring 18-px strip between sections. Built with one orange rectangle as a bas
 1. Sticky nav (logo, menu, lang chips)
 2. Hero — `Penguin_grabs_bottle_on_iceberg.mp4` background, "The Shot That **Starts** The Night" headline, `WAAR VERKRIJGBAAR` solid CTA, scroll hint
 3. Hazard tape
-4. `02 // THE PRODUCT` — image left, copy right ("HONEY × SALT."), 4-spec grid (21% / 70 cl / Cold / Freezer), ghost CTA `MEER OVER DUTCH OIL DROPSHOT`
+4. `02 // THE PRODUCT` — image left, copy right ("HONEY × SALT."), 4-spec grid (23% / 70 cl / Cold / Freezer), ghost CTA `MEER OVER DUTCH OIL DROPSHOT`
 5. Field Report — blue background, centered quote `"Niet zomaar een shotje. Een statement."`
 6. Three modular cards: The Product · The Story · Selling Points (each with image + READ →)
 7. Marquee `DARE · DRINK · DROP · REPEAT` (animated CSS loop, blue bg)
@@ -152,7 +152,7 @@ Recurring 18-px strip between sections. Built with one orange rectangle as a bas
 ### `contact.html` (Contact)
 1. Nav
 2. Hero — `penguin-iceberg.png` background, "Let's Talk!" headline
-3. Contact card — image left, copy right ("Ready To Bring Dutch Oil To Your Bar?"), **`GET IN TOUCH` ghost button** linking to `mailto:info@dutchoil.nl`
+3. Contact card — image left, copy right ("Ready To Bring Dutch Oil To Your Bar?"), **`GET IN TOUCH` ghost button** linking to `mailto:info@theboozecompany.nl`
 4. Hazard tape
 5. Footer
 
@@ -389,7 +389,7 @@ After the first successful `git push` (which prompts for a Personal Access Token
 - The hero on each page is left-aligned with the logo — no max-width centering.
 - Logo hover: **colour swap only** (text → blue, dot → white). No letter-spacing change.
 - Hamburger lines are **3 px thick, 5 px apart** (thicker than the initial 2 × 8 spec).
-- Address in the footer: `THE BOOZE COMPANY · DUTCH OIL DROPSHOT · HIDDEMAHEERD 168 — 9737JK GRONINGEN · INFO@DUTCHOIL.NL` (the email line is a `mailto:` link).
+- Address in the footer: `THE BOOZE COMPANY · DUTCH OIL DROPSHOT · HIDDEMAHEERD 168 — 9737JK GRONINGEN · INFO@THEBOOZECOMPANY.NL` (the email line is a `mailto:` link).
 - "VERHAAL" → "HISTORY" eyebrow across the site.
 
 ---

@@ -6,7 +6,7 @@ Most of the project knowledge already lives in the repo. This recap captures the
 
 ## 1. The project at a glance
 
-- **What it is.** A static brand site for **Dutch Oil Dropshot** — a Groningen-based herbal shot drink (21% ABV, honey × salt). 5 marketing pages + age verification gate.
+- **What it is.** A static brand site for **Dutch Oil Dropshot** — a Groningen-based herbal shot drink (23% ABV, honey × salt). 5 marketing pages + age verification gate.
 - **Aesthetic.** Industrial, dark, electric-blue. Black backgrounds, asphalt-grey alternating sections, hazard-tape strips between sections, Oswald display type, JetBrains Mono labels.
 - **Tech stack.** Pure HTML + CSS + JS. No framework, no build step. Leaflet for the stockist map. Google Sheets as the CMS. Google Fonts.
 - **Live URL:** <https://erwinhoekstra1988-design.github.io/dutch-oil-dropshot/>
@@ -83,7 +83,7 @@ Everything in §3 phases 10–11 is post the log being written. These are the de
 |---|---|
 | Custom domain (e.g. `dutchoil.nl`) | Not configured. Add a `CNAME` file at the repo root + DNS records when ready. |
 | "NO" destination on age gate | Currently `drinkwijzer.info`. Confirm with legal team. |
-| Sample-request form | The contact CTA is `mailto:info@dutchoil.nl`. No backend form. |
+| Sample-request form | The contact CTA is `mailto:info@theboozecompany.nl`. No backend form. |
 | Language switcher (NL/EN/DE) | Chips visible in nav but not wired. |
 | Real stockist data | The Google Sheet (URL hard-coded in `stockists-map.js` line 32) has ~17 entries right now. Client edits the sheet → live within ~5 min. |
 | Accessibility audit | Never formally run (axe / Lighthouse). |
