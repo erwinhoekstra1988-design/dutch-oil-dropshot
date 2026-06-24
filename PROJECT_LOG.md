@@ -38,11 +38,16 @@ dutch-oil-dropshot/
 ├── styles.css              All visual rules. ~900 lines. Single stylesheet, no preprocessor.
 ├── nav.js                  Loaded on every page. Wires hamburger, menu-roll, button-arrow injection.
 ├── stockists-map.js        Loaded on stockists.html only. Fetches Sheet → renders Leaflet map + list.
+├── site-cms.js             Loaded on every page. Fetches the copy + assets Google Sheet tabs and
+│                           swaps any text/image/video the client has overridden. See §15.
 │
-├── stockists.csv           Template/seed showing the column shape the Google Sheet should have.
-├── stockists kopie.csv     User's manual backup; safe to delete.
+├── stockists.csv             Template/seed for the stockists Google Sheet.
+├── stockists kopie.csv       User's manual backup; safe to delete.
+├── cms-copy-template.csv     Starter rows for the site-CMS "copy" tab (63 editable text slots).
+├── cms-assets-template.csv   Starter rows for the site-CMS "assets" tab (21 editable media slots).
 │
 ├── WORKFLOW.md             Git/deploy how-to for non-developers.
+├── CMS.md                  Editor's guide for the non-technical client (text + media editing).
 ├── PROJECT_LOG.md          This file.
 ├── .gitignore              macOS/.DS_Store, editor junk, .claude/.
 │
@@ -257,7 +262,9 @@ Single horizontal scroll loop `DARE · DRINK · DROP · REPEAT ·` with `animati
 
 ## 7. The stockists CMS (Google Sheet)
 
-This is the most distinctive piece of architecture. The map and list on `stockists.html` are populated at page load from a Google Sheet, which the client edits directly.
+This is the original CMS — covers only the stockists list. The **site-wide CMS** for editable text + images + videos is a separate, later subsystem; see **§15** below.
+
+The map and list on `stockists.html` are populated at page load from a Google Sheet, which the client edits directly.
 
 ### How the client uses it
 
@@ -413,6 +420,79 @@ These were noted during the build but not done. None of them are bugs — just u
 
 After `git clone` on a laptop and `claude` in the project directory, send this as the first message:
 
-> Read **`PROJECT_LOG.md`**, **`WORKFLOW.md`**, and **`assets/README.md`** then summarise the project so I can confirm you have full context. Don't make any changes yet.
+> Read **`PROJECT_LOG.md`**, **`WORKFLOW.md`**, **`CMS.md`**, and **`assets/README.md`** then summarise the project so I can confirm you have full context. Don't make any changes yet.
 
 I'll surface my reconstructed understanding and you can correct anything that's drifted.
+
+---
+
+## 15. Site CMS — editable text + images + videos
+
+A **separate** CMS from the stockists one (§7). This one covers all marketing copy and media across the 5 pages. Same idea: a Google Sheet published as CSV, fetched at page load, applied non-destructively over the baked-in HTML.
+
+The client's view of it lives in [`CMS.md`](CMS.md). This section is the engineering view.
+
+### Files
+
+| File | Purpose |
+|---|---|
+| `site-cms.js` | Loader. Included on every HTML page after `nav.js`. ~110 lines. Self-contained IIFE. |
+| `cms-copy-template.csv` | 63-row starter for the "copy" sheet tab — every editable text slot on the site with its current value. |
+| `cms-assets-template.csv` | 21-row starter for the "assets" sheet tab — every editable image/video slot with its current relative path. |
+| `CMS.md` | Non-technical editor guide written for the client. |
+
+### How it works
+
+1. Each HTML element that should be editable has `data-copy-key="…"` (for text) or `data-asset-key="…"` (for images/videos). The opening tag is unchanged otherwise — the **fallback content is the inline HTML/src already there**, so the page is fully usable if the sheet is unreachable.
+2. On `DOMContentLoaded`, `site-cms.js` fetches the two CSVs in parallel (no blocking).
+3. Each CSV is parsed (same parser pattern as `stockists-map.js`) into a `{ key → value }` map.
+4. For each `[data-copy-key]` whose key is in the copy map → `el.innerHTML = map[key]` (innerHTML, not textContent, so the client can include `<br>`, `<strong>`, `<em>`, `<span class="accent-electric">` in the sheet).
+5. For each `[data-asset-key]` whose key is in the asset map:
+   - `<img>` or `<source>` → swap `src`
+   - `<video>` → swap `poster`
+   - any `<source>` swap triggers `parent.load()` so the new video file actually plays
+6. Empty cells, missing keys, fetch failures → silently keep the baked-in HTML. No flicker for slots that aren't overridden.
+
+### Key naming convention
+
+`{page}.{section}.{slot}` — kebab-segments separated by dots. Examples:
+
+- `home.hero.title`, `home.hero.cta`
+- `product.split1.body1`, `product.split2.tagline`
+- `story.split.list.item1`
+- `stockists.list.group2.title`
+- `contact.card.body3`
+
+The full inventory is in the two CSV templates.
+
+### Where the assets live
+
+For NEW images/videos the client wants to swap in, the convention is **Cloudinary** (free tier, 25 GB) — they paste the Cloudinary delivery URL into the `url` column of the assets tab. Existing baked-in assets remain in `assets/` and serve as fallback if Cloudinary is unreachable or the URL is wrong.
+
+### Configuring the sheet URLs
+
+`site-cms.js` lines 35–36:
+
+```js
+const COPY_CSV_URL   = '';   // paste "Publish to web → CSV" URL for the copy tab
+const ASSETS_CSV_URL = '';   // same for the assets tab
+```
+
+Both blank ⇒ script logs `[site-cms] No sheet URLs configured` and exits without fetching. This is the safe default state — the site renders identically to a non-CMS build.
+
+### Why innerHTML and not textContent
+
+textContent would lose the `<span class="accent-electric">` accents in headlines like the homepage hero. Trusting innerHTML is acceptable here because the only writer is the site owner editing their own sheet — the same trust boundary as the source HTML itself. Sheet-rendered curly quotes can break the markup; document this in `CMS.md` and the client uses straight quotes.
+
+### Adding a new editable slot
+
+1. Add `data-copy-key="{page}.{section}.{slot}"` or `data-asset-key="…"` to the element in the HTML.
+2. Append a row to `cms-copy-template.csv` / `cms-assets-template.csv` with the same key + current value.
+3. Tell the client to add the matching row to their live Google Sheet (or do it for them).
+
+### Limitations
+
+- No live preview while editing — client edits sheet, waits ~30 s, reloads page.
+- No rich-text editor — basic HTML tags only.
+- Sheet is publicly readable (it's a published CSV) — fine for marketing copy, not for anything private.
+- 1-2 round-trips per page load — fast (CSV is tiny, both fetches in parallel), but slower than a build-time inline.

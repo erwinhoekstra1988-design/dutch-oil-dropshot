@@ -15,13 +15,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=2" />
-<script src="nav.js?v=2" defer></script>
+<link rel="stylesheet" href="styles.css?v=3" />
+<script src="nav.js?v=3" defer></script>
+<script src="site-cms.js?v=3" defer></script>
 </head>
 <body>
 
 <header class="nav-bar">
-  <a href="index.html" class="logo"><img src="assets/dutch-oil-logo.svg?v=2" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
+  <a href="index.html" class="logo"><img src="assets/dutch-oil-logo.svg?v=3" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
     <span></span><span></span><span></span>
   </button>
@@ -36,15 +37,15 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video class="hero-bg" autoplay loop muted playsinline poster="assets/honey-spill.jpeg?v=2" aria-hidden="true">
-    <source src="assets/honey-spill.mp4?v=2" type="video/mp4" />
+  <video class="hero-bg" autoplay loop muted playsinline poster="assets/honey-spill.jpeg?v=3" aria-hidden="true">
+    <source data-asset-key="product.hero.video" src="assets/honey-spill.mp4?v=3" type="video/mp4" />
   </video>
   <div class="hero-grad"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
-    <div class="hero-prefix">Thick. Smooth.<br />Unforgettable.</div>
-    <h1 class="hero-title-xl">Honey<span class="accent-electric">×</span><br />Salt.</h1>
-    <p class="hero-body">
+    <div class="hero-eyebrow" data-copy-key="product.hero.eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
+    <div class="hero-prefix" data-copy-key="product.hero.prefix">Thick. Smooth.<br />Unforgettable.</div>
+    <h1 class="hero-title-xl" data-copy-key="product.hero.title">Honey<span class="accent-electric">×</span><br />Salt.</h1>
+    <p class="hero-body" data-copy-key="product.hero.body">
       Vanaf het moment dat Dutch Oil wordt ingeschonken zie je het verschil.
       De karakteristieke stroperige structuur geeft het shot een volle uitstraling
       en een zachte drinkervaring.
@@ -62,19 +63,19 @@
   </div>
   <div class="split-grid image-left">
     <div class="split-img">
-      <img src="assets/bottle-blue-bar.png?v=2" alt="Dutch Oil Dropshot fles op de bar" />
+      <img data-asset-key="product.split1.image" src="assets/bottle-blue-bar.png?v=3" alt="Dutch Oil Dropshot fles op de bar" />
     </div>
     <div class="split-copy">
-      <div class="product-eyebrow">HISTORY</div>
-      <h2 class="split-headline">More Than<br /><span class="accent-electric">A Dropshot.</span></h2>
-      <p class="split-body">
+      <div class="product-eyebrow" data-copy-key="product.split1.eyebrow">HISTORY</div>
+      <h2 class="split-headline" data-copy-key="product.split1.headline">More Than<br /><span class="accent-electric">A Dropshot.</span></h2>
+      <p class="split-body" data-copy-key="product.split1.body1">
         Dutch Oil is ontwikkeld vanuit één simpele gedachte:<br />
         Waarom zou een dropshot niet écht lekker kunnen zijn?
       </p>
-      <p class="split-body">
+      <p class="split-body" data-copy-key="product.split1.body2">
         Veel dropshots draaien om alcohol. Dutch Oil draait om smaak.
       </p>
-      <p class="split-body">
+      <p class="split-body" data-copy-key="product.split1.body3">
         Onze unieke receptuur combineert krachtige drop met een zachte
         honingbasis en een subtiele zoute ondertoon.
       </p>
@@ -86,20 +87,20 @@
 <section class="split">
   <div class="split-grid">
     <div class="split-copy">
-      <h2 class="split-headline" style="color: var(--electric);">Crafted For<br />The Night.</h2>
-      <p class="split-body">
+      <h2 class="split-headline" style="color: var(--electric);" data-copy-key="product.split2.headline">Crafted For<br />The Night.</h2>
+      <p class="split-body" data-copy-key="product.split2.body1">
         Dutch Oil is gemaakt voor momenten waarop vrienden samenkomen,
         de muziek harder gaat en de avond nog jong is.
       </p>
-      <p class="split-body">
+      <p class="split-body" data-copy-key="product.split2.body2">
         › Het shot dat de eerste ronde opent.<br />
         › Het shot dat blijft terugkomen.<br />
         › Het shot dat het feest aanzet.
       </p>
-      <p class="split-tagline">Dutch Oil: The Best Tasting Dropshot.</p>
+      <p class="split-tagline" data-copy-key="product.split2.tagline">Dutch Oil: The Best Tasting Dropshot.</p>
     </div>
     <div class="split-img">
-      <img src="assets/bottle-wood-bar.png?v=2" alt="Dutch Oil Dropshot on bar" />
+      <img data-asset-key="product.split2.image" src="assets/bottle-wood-bar.png?v=3" alt="Dutch Oil Dropshot on bar" />
     </div>
   </div>
 </section>
@@ -124,10 +125,10 @@
     <span class="sec-meta">#DUTCHOIL · TAG @DUTCHOIL</span>
   </div>
   <div class="wild-grid">
-    <div><img src="assets/shots-tray-club.png?v=2" alt="Tray of Dutch Oil shots in a club" /></div>
-    <div><img src="assets/bottle-mini-iceberg.png?v=2" alt="Bottle on iceberg" /></div>
-    <div><img src="assets/drum.jpeg?v=2" alt="Dutch Oil drum and shots" /></div>
-    <div><img src="assets/bottle-blue-bar.png?v=2" alt="Bottle in blue-lit bar" /></div>
+    <div><img data-asset-key="product.wild.image1" src="assets/shots-tray-club.png?v=3" alt="Tray of Dutch Oil shots in a club" /></div>
+    <div><img data-asset-key="product.wild.image2" src="assets/bottle-mini-iceberg.png?v=3" alt="Bottle on iceberg" /></div>
+    <div><img data-asset-key="product.wild.image3" src="assets/drum.jpeg?v=3" alt="Dutch Oil drum and shots" /></div>
+    <div><img data-asset-key="product.wild.image4" src="assets/bottle-blue-bar.png?v=3" alt="Bottle in blue-lit bar" /></div>
   </div>
 </section>
 
@@ -136,7 +137,7 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <div>
-    <a href="index.html" class="logo foot-logo"><img src="assets/dutch-oil-logo.svg?v=2" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
+    <a href="index.html" class="logo foot-logo"><img src="assets/dutch-oil-logo.svg?v=3" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
     <address class="foot-addr">
       THE BOOZE COMPANY<br />
       DUTCH OIL DROPSHOT<br />

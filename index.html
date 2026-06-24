@@ -15,14 +15,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=2" />
-<script src="nav.js?v=2" defer></script>
+<link rel="stylesheet" href="styles.css?v=3" />
+<script src="nav.js?v=3" defer></script>
+<script src="site-cms.js?v=3" defer></script>
 </head>
 <body>
 
 <!-- NAV -->
 <header class="nav-bar">
-  <a href="index.html" class="logo"><img src="assets/dutch-oil-logo.svg?v=2" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
+  <a href="index.html" class="logo"><img src="assets/dutch-oil-logo.svg?v=3" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
     <span></span><span></span><span></span>
   </button>
@@ -37,18 +38,18 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video class="hero-bg" autoplay loop muted playsinline poster="assets/penguin-iceberg.png?v=2" aria-hidden="true">
-    <source src="assets/Penguin_grabs_bottle_on_iceberg.mp4?v=2" type="video/mp4" />
+  <video class="hero-bg" autoplay loop muted playsinline poster="assets/penguin-iceberg.png?v=3" aria-hidden="true">
+    <source data-asset-key="home.hero.video" src="assets/Penguin_grabs_bottle_on_iceberg.mp4?v=3" type="video/mp4" />
   </video>
   <div class="hero-grad"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
-    <h1 class="hero-title">The Shot<br />That <span class="accent-electric">Starts</span><br /><span class="accent-electric">The Night.</span></h1>
+    <div class="hero-eyebrow" data-copy-key="home.hero.eyebrow">DUTCH OIL — DROPSHOT N° 01</div>
+    <h1 class="hero-title" data-copy-key="home.hero.title">The Shot<br />That <span class="accent-electric">Starts</span><br /><span class="accent-electric">The Night.</span></h1>
     <div class="hero-actions">
-      <a href="stockists.html" class="btn">WAAR VERKRIJGBAAR</a>
+      <a href="stockists.html" class="btn" data-copy-key="home.hero.cta">WAAR VERKRIJGBAAR</a>
     </div>
   </div>
-  <div class="hero-scroll">↓ SCROLL — REFUEL</div>
+  <div class="hero-scroll" data-copy-key="home.hero.scroll">↓ SCROLL — REFUEL</div>
 </section>
 
 <div class="hazard-tape" role="presentation"></div>
@@ -61,67 +62,67 @@
   </div>
   <div class="product-grid">
     <div class="product-img">
-      <img src="assets/bottle-bar.png?v=2" alt="Dutch Oil Dropshot fles op een bar" />
+      <img data-asset-key="home.product.image" src="assets/bottle-bar.png?v=3" alt="Dutch Oil Dropshot fles op een bar" />
     </div>
     <div class="product-copy">
-      <div class="product-eyebrow">FLAVOUR PROFILE</div>
-      <h2 class="product-headline">HONEY<span class="accent-electric">×</span>SALT.</h2>
-      <p class="product-body">
+      <div class="product-eyebrow" data-copy-key="home.product.eyebrow">FLAVOUR PROFILE</div>
+      <h2 class="product-headline" data-copy-key="home.product.headline">HONEY<span class="accent-electric">×</span>SALT.</h2>
+      <p class="product-body" data-copy-key="home.product.body1">
         Vol, stroperig en verrassend zacht. Dutch Oil is de premium dropshot
         die gemaakt is voor mensen die meer verwachten van een shotje.
       </p>
-      <p class="product-body">
+      <p class="product-body" data-copy-key="home.product.body2">
         Met een unieke balans van drop, honing en een subtiele zoute touch is
         Dutch Oil niet zomaar een drankje. Het is een smaakbeleving die het
         feest op gang brengt en blijft hangen lang nadat het glas leeg is.
       </p>
-      <p class="product-body">
+      <p class="product-body" data-copy-key="home.product.body3">
         23% alcohol. Maximale smaak. Minimale compromis.
       </p>
       <dl class="spec-grid">
-        <div class="spec"><dt>ABV</dt><dd>23%</dd></div>
-        <div class="spec"><dt>VOL</dt><dd>70 cl</dd></div>
-        <div class="spec"><dt>SERVE</dt><dd>Cold</dd></div>
-        <div class="spec"><dt>STORE</dt><dd>Freezer</dd></div>
+        <div class="spec"><dt>ABV</dt><dd data-copy-key="home.product.spec.abv">23%</dd></div>
+        <div class="spec"><dt>VOL</dt><dd data-copy-key="home.product.spec.vol">70 cl</dd></div>
+        <div class="spec"><dt>SERVE</dt><dd data-copy-key="home.product.spec.serve">Cold</dd></div>
+        <div class="spec"><dt>STORE</dt><dd data-copy-key="home.product.spec.store">Freezer</dd></div>
       </dl>
-      <a href="product.html" class="btn btn-ghost product-cta">MEER OVER DUTCH OIL DROPSHOT</a>
+      <a href="product.html" class="btn btn-ghost product-cta" data-copy-key="home.product.cta">MEER OVER DUTCH OIL DROPSHOT</a>
     </div>
   </div>
 </section>
 
 <!-- 02.5 FIELD REPORT -->
 <section class="field-report">
-  <div class="label">⚠ FIELD REPORT</div>
-  <blockquote class="field-quote">“Niet zomaar een shotje.<br />Een statement.”</blockquote>
-  <div class="field-credit">— MIXOLOGY NL · APR 2026</div>
+  <div class="label" data-copy-key="home.fieldreport.label">⚠ FIELD REPORT</div>
+  <blockquote class="field-quote" data-copy-key="home.fieldreport.quote">“Niet zomaar een shotje.<br />Een statement.”</blockquote>
+  <div class="field-credit" data-copy-key="home.fieldreport.credit">— MIXOLOGY NL · APR 2026</div>
 </section>
 
 <!-- 3 modular cards -->
 <section class="cards">
   <a href="product.html" class="card">
-    <div class="card-img"><img src="assets/bottle-blue-bar.png?v=2" alt="Dutch Oil Dropshot product" /></div>
+    <div class="card-img"><img data-asset-key="home.cards.product.image" src="assets/bottle-blue-bar.png?v=3" alt="Dutch Oil Dropshot product" /></div>
     <div class="card-body">
       <div class="card-num mono">02 //</div>
-      <div class="card-title">The Product</div>
-      <div class="card-sub">Honing × Zout</div>
+      <div class="card-title" data-copy-key="home.cards.product.title">The Product</div>
+      <div class="card-sub" data-copy-key="home.cards.product.sub">Honing × Zout</div>
       <div class="card-cta">READ →</div>
     </div>
   </a>
   <a href="story.html" class="card">
-    <div class="card-img"><img src="assets/man-bottle.png?v=2" alt="Dutch Oil verhaal" /></div>
+    <div class="card-img"><img data-asset-key="home.cards.story.image" src="assets/man-bottle.png?v=3" alt="Dutch Oil verhaal" /></div>
     <div class="card-body">
       <div class="card-num mono">03 //</div>
-      <div class="card-title">The Story</div>
-      <div class="card-sub">Built in Groningen</div>
+      <div class="card-title" data-copy-key="home.cards.story.title">The Story</div>
+      <div class="card-sub" data-copy-key="home.cards.story.sub">Built in Groningen</div>
       <div class="card-cta">READ →</div>
     </div>
   </a>
   <a href="stockists.html" class="card">
-    <div class="card-img"><img src="assets/bottle-wood-bar.png?v=2" alt="Verkooppunten" /></div>
+    <div class="card-img"><img data-asset-key="home.cards.stockists.image" src="assets/bottle-wood-bar.png?v=3" alt="Verkooppunten" /></div>
     <div class="card-body">
       <div class="card-num mono">04 //</div>
-      <div class="card-title">Selling Points</div>
-      <div class="card-sub">Find a stockist</div>
+      <div class="card-title" data-copy-key="home.cards.stockists.title">Selling Points</div>
+      <div class="card-sub" data-copy-key="home.cards.stockists.sub">Find a stockist</div>
       <div class="card-cta">READ →</div>
     </div>
   </a>
@@ -142,7 +143,7 @@
 <!-- FOOTER -->
 <footer id="contact" class="site-footer">
   <div>
-    <a href="index.html" class="logo foot-logo"><img src="assets/dutch-oil-logo.svg?v=2" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
+    <a href="index.html" class="logo foot-logo"><img src="assets/dutch-oil-logo.svg?v=3" alt="Dutch Oil · Dropshot" class="logo-img" /></a>
     <address class="foot-addr">
       THE BOOZE COMPANY<br />
       DUTCH OIL DROPSHOT<br />

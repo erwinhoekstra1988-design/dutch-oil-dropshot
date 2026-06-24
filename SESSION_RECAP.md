@@ -70,10 +70,29 @@ Everything in §3 phases 10–11 is post the log being written. These are the de
 
 ### Cache buster
 
-- All local CSS, JS, image and video references carry `?v=2`. **Bump to `?v=3` next** when anything in `styles.css` / `nav.js` / `stockists-map.js` / an asset changes:
+- All local CSS, JS, image and video references now carry `?v=3` (bumped during the CMS work). **Next bump → `?v=4`** when anything in `styles.css` / `nav.js` / `stockists-map.js` / `site-cms.js` / an asset changes:
   ```bash
-  find . -maxdepth 1 -name "*.html" -exec sed -i '' 's/?v=2/?v=3/g' {} +
+  find . -maxdepth 1 -name "*.html" -exec sed -i '' 's/?v=3/?v=4/g' {} +
   ```
+
+### Footer FOLLOW links
+
+- Facebook and Instagram are now real URLs (`https://www.facebook.com/dutch.oil/`, `https://www.instagram.com/dutchoil/`), `target="_blank"`. TikTok + Spotify removed from all 5 footers.
+
+### Company email
+
+- All `info@dutchoil.nl` mailto links + footer labels were replaced with `info@theboozecompany.nl`. The brand-site domain `dutchoil.nl` was left as-is in the speculative custom-domain notes.
+
+### Site CMS for editable text + media (NEW)
+
+A second CMS, separate from the stockists one. Files:
+
+- `site-cms.js` — fetches two Google Sheet tabs (`copy` + `assets`), swaps any text/image/video the client has overridden via `[data-copy-key]` / `[data-asset-key]`. Falls back to baked-in HTML if URLs are blank or any fetch fails.
+- `cms-copy-template.csv` (63 rows) and `cms-assets-template.csv` (21 rows) — seed data ready to paste into the client's new sheet.
+- `CMS.md` — non-technical editor guide for the client.
+- All 5 HTML pages now have `data-copy-key` / `data-asset-key` attributes on every editable element. Verified fallback rendering + inline-tested the override path (mock CSV value with an accent-electric span swapped cleanly into the hero h1).
+
+**To go live**: client creates the Google Sheet from the two CSV templates → publishes each tab as CSV → pastes the two URLs into the two `const … = ''` lines at the top of `site-cms.js`. Optional Cloudinary free-tier account for hosting any new image/video they want to swap in. Engineering view in PROJECT_LOG.md §15.
 
 ---
 
