@@ -37,8 +37,8 @@
   // ── 1. CONFIG ──
   // Paste the published-CSV URL for each tab. Leave a URL blank to use only
   // baked-in HTML for that category (text, assets, or both).
-  const COPY_CSV_URL   = '';
-  const ASSETS_CSV_URL = '';
+  const COPY_CSV_URL   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxyqnek94tAVcWyW8AK-lmalNR1qZwj3NBMwEL_B_QPFmzlUZYrkdTeeJhoLGbLuVz99ihnpk1APJp/pub?gid=666031728&single=true&output=csv';
+  const ASSETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxyqnek94tAVcWyW8AK-lmalNR1qZwj3NBMwEL_B_QPFmzlUZYrkdTeeJhoLGbLuVz99ihnpk1APJp/pub?gid=507352886&single=true&output=csv';
 
   if (!COPY_CSV_URL && !ASSETS_CSV_URL) {
     console.info('[site-cms] No sheet URLs configured — site uses baked-in HTML only.');
