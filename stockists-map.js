@@ -80,7 +80,8 @@
     'bedum':                [53.3022, 6.6019],
     'sneek':                [53.0317, 5.6586],
     'bolsward':             [53.0667, 5.5333],
-    'harlingen':[53.174,5.425],
+    'harlingen':            [53.1740, 5.4250],
+    'haren':                [53.1710, 6.6061],
   };
 
   // ── 3. BAKED-IN FALLBACK ──
@@ -259,7 +260,49 @@
     return markers;
   }
 
-  // ── 6. LOAD: try Sheet → CSV → render; fall back if anything fails ──
+  // ── 6. AUTO-GEOCODE UNKNOWN CITIES ──
+  // Cities not in CITY_COORDS get looked up via OpenStreetMap's free Nominatim
+  // service and cached in localStorage. So the client can add any Dutch city
+  // to the sheet without anyone touching the code.
+  async function resolveMissingCities(stockists) {
+    const unknown = [...new Set(
+      stockists.map(s => (s.city || '').toLowerCase().trim())
+               .filter(c => c && !CITY_COORDS[c])
+    )];
+    if (!unknown.length) return;
+    for (const city of unknown) {
+      const cacheKey = 'stockist-geo:' + city;
+      try {
+        const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+        if (Array.isArray(cached) && cached.length === 2 && isFinite(cached[0]) && isFinite(cached[1])) {
+          CITY_COORDS[city] = cached;
+          continue;
+        }
+      } catch (e) {}
+      try {
+        const url = 'https://nominatim.openstreetmap.org/search?' + new URLSearchParams({
+          q: city, format: 'json', limit: '1', countrycodes: 'nl'
+        });
+        const r = await fetch(url, { headers: { 'Accept': 'application/json' } });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const data = await r.json();
+        if (data && data[0] && data[0].lat && data[0].lon) {
+          const coords = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+          CITY_COORDS[city] = coords;
+          try { localStorage.setItem(cacheKey, JSON.stringify(coords)); } catch (e) {}
+          console.log(`[stockists] Auto-geocoded "${city}" → ${coords[0]}, ${coords[1]}`);
+        } else {
+          console.warn(`[stockists] Nominatim returned no result for "${city}"`);
+        }
+      } catch (err) {
+        console.warn(`[stockists] Could not geocode "${city}":`, err.message);
+      }
+      // Nominatim asks for ≤1 req/sec from a given host. Be polite.
+      await new Promise(r => setTimeout(r, 1100));
+    }
+  }
+
+  // ── 7. LOAD: try Sheet → CSV → geocode unknowns → render; fall back if anything fails ──
   async function load() {
     if (!SHEET_CSV_URL || SHEET_CSV_URL.includes('PASTE_')) {
       console.info('[stockists] No Sheet URL configured — using baked-in fallback. See top of file.');
@@ -271,6 +314,7 @@
       const list = csvToStockists(await r.text());
       if (!list.length) throw new Error('Sheet returned no rows');
       console.log(`[stockists] Loaded ${list.length} entries from Google Sheet`);
+      await resolveMissingCities(list);
       render(list);
     } catch (err) {
       console.warn('[stockists] Falling back to baked-in data:', err.message);
