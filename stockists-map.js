@@ -29,7 +29,7 @@
   // ── 1. CONFIG ──
   // Replace with your "Publish to web → CSV" URL once the sheet is live.
   // Leave the placeholder in place to use the baked-in FALLBACK data.
-  const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9-snwhhFfOE0Qww97vnfWAu7pvcUreYyl8ihJc9hI24_NO7XchpGgJ5ho7mVxAfXZ8nXmLLgLK7f-/pub?gid=0&single=true&output=csv';
+  const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxyqnek94tAVcWyW8AK-lmalNR1qZwj3NBMwEL_B_QPFmzlUZYrkdTeeJhoLGbLuVz99ihnpk1APJp/pub?gid=1302405112&single=true&output=csv';
 
   // ── 2. CITY → COORDINATES ──
   // The client just types a city name; we look up its lat/lon here.
@@ -128,13 +128,28 @@
 
   function csvToStockists(csvText) {
     const rows = parseCSV(csvText);
-    if (rows.length < 2) return [];
-    const header = rows[0].map(h => h.trim().toLowerCase());
-    const iType    = header.indexOf('type');
-    const iName    = header.indexOf('name');
-    const iCity    = header.indexOf('city');
-    const iAddress = header.indexOf('address');
-    return rows.slice(1).map(r => ({
+    if (!rows.length) return [];
+    // Detect whether row 0 is a header. If column A starts with a known type
+    // value (HQ/Bar/Slijterij/Groothandel), treat the sheet as headerless and
+    // use positional column mapping. Lets the client delete the header row
+    // without breaking the page.
+    const TYPES = ['hq', 'bar', 'slijterij', 'groothandel'];
+    const firstCell = (rows[0][0] || '').trim().toLowerCase();
+    const headerless = TYPES.some(t => firstCell === t || firstCell.startsWith(t + ' '));
+    let iType, iName, iCity, iAddress, dataRows;
+    if (headerless) {
+      iType = 0; iName = 1; iCity = 2; iAddress = 3;
+      dataRows = rows;
+    } else {
+      if (rows.length < 2) return [];
+      const header = rows[0].map(h => h.trim().toLowerCase());
+      iType    = header.indexOf('type');
+      iName    = header.indexOf('name');
+      iCity    = header.indexOf('city');
+      iAddress = header.indexOf('address');
+      dataRows = rows.slice(1);
+    }
+    return dataRows.map(r => ({
       type:    iType    >= 0 ? (r[iType]    || '').trim() : '',
       name:    iName    >= 0 ? (r[iName]    || '').trim() : '',
       city:    iCity    >= 0 ? (r[iCity]    || '').trim() : '',
