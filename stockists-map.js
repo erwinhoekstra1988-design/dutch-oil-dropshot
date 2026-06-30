@@ -257,6 +257,30 @@
       li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flyTo(); } });
     });
 
+    // Auto-fit the view to the markers so the map is always zoomed in to the
+    // actual pins, no matter how many or where they are. invalidateSize first
+    // so Leaflet picks up the current container height (which depends on the
+    // list length).
+    map.invalidateSize();
+    const points = [...markers.values()].map(m => m.getLatLng());
+    if (points.length) {
+      map.fitBounds(L.latLngBounds(points), { padding: [50, 50], maxZoom: 14, animate: false });
+    }
+    // If the surrounding column resizes later (responsive, font load, etc.),
+    // refit so the markers stay in view.
+    if (window.ResizeObserver) {
+      const container = el;
+      let pending = null;
+      new ResizeObserver(() => {
+        clearTimeout(pending);
+        pending = setTimeout(() => {
+          map.invalidateSize();
+          const pts = [...markers.values()].map(m => m.getLatLng());
+          if (pts.length) map.fitBounds(L.latLngBounds(pts), { padding: [50, 50], maxZoom: 14, animate: false });
+        }, 120);
+      }).observe(container);
+    }
+
     return markers;
   }
 
