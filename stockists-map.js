@@ -249,11 +249,16 @@
       hoverMarker = m;
       if (m) {
         m.setStyle(hoverStyle);
-        // Snap the map to the hovered pin so it's always at centre — no animation,
-        // because at high zoom levels panning a long distance takes the pin through
-        // hundreds of pixels of mid-flight positions that look "on the edge" or off
-        // screen. Instant pan means the pin is always centred the moment you hover.
-        map.panTo(m.getLatLng(), { animate: false });
+        // Smooth pan to the pin. If the map is currently zoomed further out than
+        // HOVER_ZOOM (e.g. the initial fitBounds overview), also zoom in — makes
+        // "browse the list from the overview" naturally reveal each pin's context.
+        // Already-zoomed-in users keep their current zoom.
+        const HOVER_ZOOM = 12;
+        if (map.getZoom() < HOVER_ZOOM) {
+          map.flyTo(m.getLatLng(), HOVER_ZOOM, { animate: true, duration: 0.4 });
+        } else {
+          map.panTo(m.getLatLng(), { animate: true, duration: 0.4 });
+        }
         m.openPopup();
       }
     };
