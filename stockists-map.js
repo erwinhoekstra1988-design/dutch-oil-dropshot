@@ -255,9 +255,9 @@
         // Already-zoomed-in users keep their current zoom.
         const HOVER_ZOOM = 12;
         if (map.getZoom() < HOVER_ZOOM) {
-          map.flyTo(m.getLatLng(), HOVER_ZOOM, { animate: true, duration: 0.4 });
+          map.flyTo(m.getLatLng(), HOVER_ZOOM, { animate: true, duration: 0.8 });
         } else {
-          map.panTo(m.getLatLng(), { animate: true, duration: 0.4 });
+          map.panTo(m.getLatLng(), { animate: true, duration: 0.8 });
         }
         m.openPopup();
       }
