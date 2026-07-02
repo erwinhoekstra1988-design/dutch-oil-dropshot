@@ -299,6 +299,17 @@
       }).observe(container);
     }
 
+    // When the cursor leaves the entire list column, ease the map back out to
+    // an overview zoom (10). Only fires if we're currently more zoomed in.
+    const rightCol = document.querySelector('.stockists-right');
+    if (rightCol) {
+      rightCol.addEventListener('mouseleave', () => {
+        if (map.getZoom() > 10) {
+          map.flyTo(map.getCenter(), 10, { duration: 0.5 });
+        }
+      });
+    }
+
     return markers;
   }
 
