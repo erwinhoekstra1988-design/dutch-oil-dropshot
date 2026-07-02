@@ -249,8 +249,11 @@
       hoverMarker = m;
       if (m) {
         m.setStyle(hoverStyle);
-        // Centre the map on the hovered pin so it's always visible, not clipped to the edge.
-        map.panTo(m.getLatLng(), { animate: true, duration: 0.4 });
+        // Snap the map to the hovered pin so it's always at centre — no animation,
+        // because at high zoom levels panning a long distance takes the pin through
+        // hundreds of pixels of mid-flight positions that look "on the edge" or off
+        // screen. Instant pan means the pin is always centred the moment you hover.
+        map.panTo(m.getLatLng(), { animate: false });
         m.openPopup();
       }
     };
