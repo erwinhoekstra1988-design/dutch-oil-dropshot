@@ -220,8 +220,9 @@
 
       if (coords) {
         const latlon = jitter(coords, idx);
+        let hqRing = null;
         if (isHq) {
-          L.circleMarker(latlon, { radius: 14, fillOpacity: 0, color: '#1fa9ff', weight: 1, dashArray: '3 4' }).addTo(map);
+          hqRing = L.circleMarker(latlon, { radius: 14, fillOpacity: 0, color: '#1fa9ff', weight: 1, dashArray: '3 4' }).addTo(map);
         }
         const marker = L.circleMarker(latlon, { ...baseStyle, radius: isHq ? 9 : 7 }).addTo(map);
         const addressLine = s.address ? `<div>${s.address}</div>` : '';
@@ -230,6 +231,8 @@
           `<strong>${s.name}</strong>${addressLine}<div>${s.city}</div><div class="meta">${meta}</div>`,
           { autoPan: true, autoPanPadding: [20, 20] }
         );
+        marker._hqRing = hqRing;  // so refineAddresses() can move both together
+        marker._stockist = s;
         markers.set(s.name, marker);
       }
     });
@@ -326,7 +329,60 @@
     }
   }
 
-  // ── 7. LOAD: try Sheet → CSV → geocode unknowns → render; fall back if anything fails ──
+  // ── 7. REFINE PIN POSITIONS TO EXACT ADDRESSES ──
+  // The city-level render puts N stockists in the same city on a golden-spiral
+  // around the city centre — visible on the map as a "circle" of pins. To show
+  // each stockist at its real street address, we async-geocode "{address}, {city}"
+  // via Nominatim after the initial render and move each marker to its precise
+  // coordinates. Cached in localStorage so repeat visits are instant.
+  async function refineAddresses(stockists, markers) {
+    let refined = 0;
+    for (const s of stockists) {
+      if (!s.address) continue;
+      const marker = markers.get(s.name);
+      if (!marker) continue;
+      const cacheKey = ('stockist-addr:' + s.city + '|' + s.address).toLowerCase().trim();
+      let coords = null;
+      try {
+        const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+        if (Array.isArray(cached) && cached.length === 2 && isFinite(cached[0]) && isFinite(cached[1])) {
+          coords = cached;
+        }
+      } catch (e) {}
+      if (!coords) {
+        try {
+          const url = 'https://nominatim.openstreetmap.org/search?' + new URLSearchParams({
+            q: `${s.address}, ${s.city}`, format: 'json', limit: '1', countrycodes: 'nl',
+          });
+          const r = await fetch(url, { headers: { 'Accept': 'application/json' } });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          const data = await r.json();
+          if (data && data[0] && data[0].lat && data[0].lon) {
+            coords = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+            try { localStorage.setItem(cacheKey, JSON.stringify(coords)); } catch (e) {}
+          } else {
+            console.warn(`[stockists] No geocode result for "${s.address}, ${s.city}"`);
+          }
+        } catch (err) {
+          console.warn(`[stockists] Address geocode failed for "${s.address}, ${s.city}":`, err.message);
+        }
+        // Rate limit only on live fetches. Cache hits are free.
+        await new Promise(r => setTimeout(r, 1100));
+      }
+      if (coords) {
+        marker.setLatLng(coords);
+        if (marker._hqRing) marker._hqRing.setLatLng(coords);
+        refined++;
+      }
+    }
+    if (refined) {
+      console.log(`[stockists] Refined ${refined} pin(s) to exact addresses`);
+      const pts = [...markers.values()].map(m => m.getLatLng());
+      if (pts.length) map.fitBounds(L.latLngBounds(pts), { padding: [50, 50], maxZoom: 14, animate: false });
+    }
+  }
+
+  // ── 8. LOAD: try Sheet → CSV → geocode unknowns → render → refine; fall back if anything fails ──
   async function load() {
     if (!SHEET_CSV_URL || SHEET_CSV_URL.includes('PASTE_')) {
       console.info('[stockists] No Sheet URL configured — using baked-in fallback. See top of file.');
@@ -339,7 +395,9 @@
       if (!list.length) throw new Error('Sheet returned no rows');
       console.log(`[stockists] Loaded ${list.length} entries from Google Sheet`);
       await resolveMissingCities(list);
-      render(list);
+      const markers = render(list);
+      // Refine addresses asynchronously — the map is already interactive.
+      refineAddresses(list, markers);
     } catch (err) {
       console.warn('[stockists] Falling back to baked-in data:', err.message);
       render(FALLBACK);
