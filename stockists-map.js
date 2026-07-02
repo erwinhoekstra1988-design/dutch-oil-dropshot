@@ -229,7 +229,9 @@
         const meta = isHq ? `⚠ Headquarters · ${s.type}` : s.type;
         marker.bindPopup(
           `<strong>${s.name}</strong>${addressLine}<div>${s.city}</div><div class="meta">${meta}</div>`,
-          { autoPan: true, autoPanPadding: [20, 20] }
+          // autoPan off: my panTo below already centres the pin, and having both
+          // fight each other leaves the pin off-screen or without a popup.
+          { autoPan: false, autoPanPadding: [20, 20] }
         );
         marker._hqRing = hqRing;  // so refineAddresses() can move both together
         marker._stockist = s;
