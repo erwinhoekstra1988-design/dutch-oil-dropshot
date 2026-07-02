@@ -245,7 +245,12 @@
         hoverMarker.closePopup();
       }
       hoverMarker = m;
-      if (m) { m.setStyle(hoverStyle); m.openPopup(); }
+      if (m) {
+        m.setStyle(hoverStyle);
+        // Centre the map on the hovered pin so it's always visible, not clipped to the edge.
+        map.panTo(m.getLatLng(), { animate: true, duration: 0.4 });
+        m.openPopup();
+      }
     };
     document.querySelectorAll('[data-stockist]').forEach(li => {
       const name = li.dataset.stockist;
