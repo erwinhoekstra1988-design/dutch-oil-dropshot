@@ -163,9 +163,15 @@
     center: [52.6, 5.7], zoom: 7, minZoom: 6, maxZoom: 17,
     scrollWheelZoom: false, zoomControl: true, attributionControl: true,
   });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> · <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd', maxZoom: 19,
+  // Esri's "World Dark Gray Canvas" — free, no API key, matches our dark aesthetic.
+  // Replaces CARTO's dark_all tiles which started requiring an API key in late 2026.
+  // The base layer carries the terrain + roads; the reference layer overlays labels.
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>, DeLorme, NAVTEQ · <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+    maxZoom: 18,
+  }).addTo(map);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 18,
   }).addTo(map);
 
   const baseStyle  = { radius: 7,  color: '#0a0a0a', weight: 2, opacity: 1, fillColor: '#1fa9ff', fillOpacity: 1 };
